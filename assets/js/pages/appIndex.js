@@ -6,7 +6,7 @@ var appIndex = function () {
          * Init
          */
         init: function () {
-            window.fitText( document.getElementsByClassName("fittext"), 0.515 );
+            window.fitText( document.getElementsByClassName("fittext"), 0.53);
         }
     };
 }();
