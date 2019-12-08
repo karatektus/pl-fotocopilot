@@ -28,6 +28,56 @@ a {
     height: 100%; }
   .contact-form .child-height-100 .form-group {
     padding-bottom: 1rem; }
+  .contact-form .headline {
+    position: relative;
+    left: calc(100% - 100vw - 20em);
+    bottom: auto;
+    top: 150px;
+    animation-name: slide, slideUp;
+    animation-duration: 0.5s, 0.3s;
+    animation-delay: 0.2s, 0.7s;
+    animation-fill-mode: forwards, forwards; }
+
+@-webkit-keyframes slide {
+  100% {
+    left: 0; } }
+
+@keyframes slide {
+  100% {
+    left: 0; } }
+  .contact-form .fadein {
+    visibility: hidden;
+    top: 150px;
+    animation-name: slideUp, opacity;
+    animation-duration: 0.3s, 0.5s;
+    animation-delay: 0.7s, 1s;
+    animation-fill-mode: forwards, forwards; }
+
+@-webkit-keyframes opacity {
+  0% {
+    position: inherit;
+    opacity: 0; }
+  100% {
+    position: inherit;
+    visibility: visible;
+    opacity: 1; } }
+
+@keyframes opacity {
+  0% {
+    position: inherit;
+    opacity: 0; }
+  100% {
+    position: inherit;
+    visibility: visible;
+    opacity: 1; } }
+
+@-webkit-keyframes slideUp {
+  100% {
+    top: 0; } }
+
+@keyframes slideUp {
+  100% {
+    top: 0; } }
 
 .btn {
   border-radius: 0;

@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/asset/img/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('/asset/img/favicon/site.webmanifest') }}">
     {% block head_app_css %}
-        {% set css_file = '/asset/css/app.' ~ (('prod' == app.environment or true == app.request.session.get('_FORCE_TIDY_CSS')) ? 'tidy.' : '') ~ 'min.css' %}
+        {% set css_file = '/asset/css/app.tidy.min.css' %}
         <link href="{{ asset(css_file)|file_version }}" rel="stylesheet" type="text/css"/>
     {% endblock %}
 </head>

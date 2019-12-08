@@ -128,7 +128,11 @@ module.exports = function (grunt) {
         uncss: {
             dist: {
                 options: {
-                    ignore: [],
+                    ignore: [
+                        'opacity',
+                        'slide',
+                        'slideUp',
+                    ],
                 },
                 files: [{
                     nonull: true,

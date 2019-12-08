@@ -6,9 +6,8 @@
     <div class="container-fluid h-100">
         <div class="row h-100  justify-content-md-center">
             <div class="col col-md-8 col-lg-6 align-self-end contact-form">
-                <h1 class="text-center headline fittext"><span class="foto">foto</span>co-pilot</h1>
-                <div class="row extra-margin fittext">
-
+                <h1 class="text-center headline fittext mb-4"><span class="foto">foto</span>co-pilot</h1>
+                <div class="row extra-margin fadein">
                     <div class="col-12 col-md-6">
                         {{ form_start(form) }}
                         {{ form_row(form.sender) }}
@@ -19,15 +18,13 @@
                         {{ form_row(form.message) }}
                     </div>
                 </div>
-                <div class="row">
+                <div class="row fadein">
                     <div class="col-12 d-md-flex justify-content-end">
                         {{ form_row(form.submit) }}
                         {{ form_rest(form) }}
                         {{ form_end(form) }}
                     </div>
                 </div>
-
-
             </div>
             <div class="col-12 d-flex align-self-end justify-content-center footer">
                 <a class="pb-3" href="{{ path('app_default_imprint') }}">{{ 'imprint'|trans }}</a>
