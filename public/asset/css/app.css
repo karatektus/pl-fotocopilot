@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Avenir';
+  font-style: normal;
+  font-weight: 200;
+  src: url("../font/avenirltstd-light.otf"); }
+
+a {
+  font-family: Roboto;
+  color: #333330; }
+  a:hover {
+    color: #262623; }
+
+.contact-form {
+  font-family: Roboto;
+  color: #333330; }
+  .contact-form h1 {
+    font-size: 11.5vw;
+    font-weight: 300;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px 4px 5px; }
+    .contact-form h1 .foto {
+      font-weight: bold; }
+  .contact-form .form-control {
+    border-radius: 0; }
+    .contact-form .form-control:focus {
+      border-color: #262623;
+      box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5); }
+  .contact-form .child-height-100 div {
+    height: 100%; }
+  .contact-form .child-height-100 .form-group {
+    padding-bottom: 1rem; }
+
+.btn {
+  border-radius: 0;
+  background-color: #333330;
+  border-color: #333330; }
+  .btn:not(:disabled):not(.disabled):active, .btn:hover {
+    color: #fff;
+    background-color: #262623;
+    border-color: #262623; }
+  .btn:not(:disabled):not(.disabled):active:focus:hover {
+    box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5); }
+
+#imprint h2 {
+  font-size: 1rem;
+  text-decoration: underline; }
+
+@media (min-width: 576px) {
+  #imprint .w-sm-auto {
+    width: auto !important; } }
+
+#imprint #map {
+  min-height: 30vh; }
+
+/*# sourceMappingURL=app.css.map */

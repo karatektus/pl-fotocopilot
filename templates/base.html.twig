@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/asset/img/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/asset/img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/asset/img/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('/asset/img/favicon/site.webmanifest') }}">
+    {% block head_app_css %}
+        {% set css_file = '/asset/css/app.' ~ (('prod' == app.environment or true == app.request.session.get('_FORCE_TIDY_CSS')) ? 'tidy.' : '') ~ 'min.css' %}
+        <link href="{{ asset(css_file)|file_version }}" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body class="h-100 app--page-{{ app.request.get('_route')|sha1|slice(1,8) }}">
+{% block body %}{% endblock %}
+
+<script type="text/javascript">
+    {# Config #}
+    var plAppConfig = {
+        debug: {% if 'dev' == app.environment %}true{% else %}false{% endif %},
+        locale: '{{ app.request.locale }}'
+    };
+
+    {# Messages #}
+    var plMessages = [];
+    {%- set messages = app.session.flashBag.keys() -%}
+    {%- if messages -%}
+    {%- for type in messages -%}
+    plMessages.push({
+        type: '{{ type }}',
+        message: '{{ app.session.flashBag.get(type)|join(' ') }}'
+    });
+    {% endfor %}
+    {% endif %}
+</script>
+
+{% block javascripts %}
+
+{% endblock %}
+<script type="text/javascript" src="{{ asset('/asset/js/app.min.js')|file_version }}"></script>
+
+{%- if 'dev' == app.environment -%}
+    <script type="text/javascript">
+        function plAppDev__tidyInit() {
+            var link = plAppDev__tidyGetStylesheet();
+            if (null === link) {
+                return;
+            }
+
+            var app = link.getAttribute('href').substring(11, link.getAttribute('href').indexOf('?'));
+
+            var a = document.createElement('a');
+            a.setAttribute('href', 'javascript:void(0)');
+            a.appendChild(document.createTextNode(app));
+
+            a.addEventListener('click', function () {
+                plAppDev__tidyToggle(a);
+            });
+
+            var footer = document.querySelector('.footer');
+            if (null !== footer) {
+                footer.appendChild(a);
+            }
+        }
+
+        function plAppDev__tidyGetStylesheet() {
+            var link, href, app;
+            var links = document.querySelectorAll('head link[rel="stylesheet"]');
+            for (var linkIndex = 0; linkIndex < links.length; linkIndex++) {
+                link = links[linkIndex];
+
+                if (undefined === links[linkIndex].href) {
+                    continue;
+                }
+
+                href = link.getAttribute('href');
+                if ('/asset/css/app.' !== href.substr(0, 15)) {
+                    continue;
+                }
+
+                return link;
+            }
+
+            return null;
+        }
+
+
+        function plAppDev__tidyToggle(a) {
+            var link = plAppDev__tidyGetStylesheet();
+            if (null === link) {
+                return;
+            }
+
+            var href = link.getAttribute('href');
+
+            if (-1 < href.indexOf('.tidy')) {
+                link.setAttribute('href', href.replace('app.tidy.min.css', 'app.min.css'));
+                a.innerHTML = 'app.min.css';
+            } else {
+                link.setAttribute('href', href.replace('app.min.css', 'app.tidy.min.css'));
+                a.innerHTML = 'app.tidy.min.css';
+            }
+        }
+
+        plAppDev__tidyInit();
+    </script>
+{%- endif -%}
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+#imprint {
+  h2 {
+    font-size: 1rem;
+    text-decoration: underline;
+  }
+
+  .w-sm-auto {
+    @media (min-width: 576px) {
+      width: auto!important;
+    }
+
+  }
+
+  #map{
+    min-height: 30vh;
+  }
+}

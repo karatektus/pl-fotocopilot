@@ -1,0 +1,59 @@
+a {
+  font-family: Roboto;
+  color: #333330;
+
+  &:hover {
+    color: #262623;
+  }
+}
+
+.contact-form {
+  font-family: Roboto;
+  color: #333330;
+
+  h1 {
+    font-size: 11.5vw;
+    font-weight: 300;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px 4px 5px;
+
+    .foto {
+      font-weight: bold;
+    }
+  }
+
+
+
+  .form-control {
+    border-radius: 0;
+
+    &:focus {
+      border-color: #262623;
+      box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5);
+    }
+  }
+  .child-height-100 {
+    div {
+      height: 100%;
+    }
+
+    .form-group {
+      padding-bottom: 1rem;
+    }
+  }
+
+}
+
+.btn {
+  border-radius: 0;
+  background-color: #333330;
+  border-color: #333330;
+
+  &:not(:disabled):not(.disabled):active, &:hover {
+    color: #fff;
+    background-color: #262623;
+    border-color: #262623;
+  }
+  &:not(:disabled):not(.disabled):active:focus:hover{
+    box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5);
+  }
+}
