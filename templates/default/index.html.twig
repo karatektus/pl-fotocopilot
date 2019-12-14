@@ -19,7 +19,10 @@
                     </div>
                 </div>
                 <div class="row fadein">
-                    <div class="col-12 d-md-flex justify-content-end">
+                    <div class="col-xs-12 col-sm-10">
+                        <p class="text-muted"><small>Die Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weiter gegeben. <a href="{{ path('app_default_imprint') }}">Mehr zum Datenschutz</a>.</small></p>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 d-md-flex justify-content-end">
                         {{ form_row(form.submit) }}
                         {{ form_rest(form) }}
                         {{ form_end(form) }}

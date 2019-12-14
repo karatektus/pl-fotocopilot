@@ -131,14 +131,15 @@ module.exports = function (grunt) {
                     ignore: [
                         'opacity',
                         'slide',
+                        'slideMs',
                         'slideUp',
                     ],
                 },
                 files: [{
                     nonull: true,
                     src: [
-                        'http://var-plfoto.pmdev-beta.de',
-                        'http://var-plfoto.pmdev-beta.de/imprint'
+                        'http://fotocopilot.local.pluetzner.de',
+                        'http://fotocopilot.local.pluetzner.de/imprint'
                     ],
                     dest: '../public/asset/css/app.tidy.min.css'
                 }]

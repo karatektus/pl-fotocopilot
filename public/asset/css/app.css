@@ -4,6 +4,7 @@
   font-weight: 200;
   src: url("../font/avenirltstd-light.otf"); }
 
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
 a {
   font-family: Roboto;
   color: #333330; }
@@ -23,6 +24,7 @@ a {
     border-radius: 0; }
     .contact-form .form-control:focus {
       border-color: #262623;
+      -webkit-box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5);
       box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5); }
   .contact-form .child-height-100 div {
     height: 100%; }
@@ -33,10 +35,16 @@ a {
     left: calc(100% - 100vw - 20em);
     bottom: auto;
     top: 150px;
-    animation-name: slide, slideUp;
+    animation-name: slideMs, slideUp;
     animation-duration: 0.5s, 0.3s;
     animation-delay: 0.2s, 0.7s;
     animation-fill-mode: forwards, forwards; }
+
+@keyframes slideMs {
+  0% {
+    left: -150vw; }
+  100% {
+    left: 0; } }
 
 @-webkit-keyframes slide {
   100% {
@@ -88,6 +96,7 @@ a {
     background-color: #262623;
     border-color: #262623; }
   .btn:not(:disabled):not(.disabled):active:focus:hover {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(93, 93, 90, 0.5); }
 
 #imprint h2 {
