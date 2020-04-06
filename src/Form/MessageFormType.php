@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Message;
+use PR\Bundle\RecaptchaBundle\Form\Type\RecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -50,6 +51,7 @@ class MessageFormType extends AbstractType
                 'required' => true,
                 'constraints' => new NotBlank(),
             ])
+            ->add('captcha', RecaptchaType::class)
             ->add('submit', SubmitType::class, [
                 'label' => 'submit',
                 'attr' => [

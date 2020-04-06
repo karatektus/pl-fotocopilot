@@ -9,6 +9,7 @@ use App\Services\MessageService;
 use DateTime;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Exception;
+use ReCaptcha\ReCaptcha;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -42,9 +43,10 @@ class DefaultController extends AbstractController
         $form = $formFactory->create(MessageFormType::class, $message);
         $form->handleRequest($request);
 
-        if(true === $form->isSubmitted() && true === $form->isValid()){
-            $mailSuccess = $mailService->send($message->getSender(), $message->getSenderEmail(), $message->getSubject(), $message->getMessage());
-            if(true === $mailSuccess){
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
+
+            $mailSuccess = true; // $mailService->send($message->getSender(), $message->getSenderEmail(), $message->getSubject(), $message->getMessage());
+            if (true === $mailSuccess) {
                 $messageService->success('mail_success');
                 $message->setSentAt(new DateTime());
             } else {
@@ -58,6 +60,7 @@ class DefaultController extends AbstractController
         }
 
         return [
+            'siteKey' => $_ENV['GOOGLE_RECAPTCHA_SITE_KEY'],
             'form' => $form->createView(),
         ];
     }
@@ -69,7 +72,8 @@ class DefaultController extends AbstractController
      *
      * @Template()
      */
-    public function imprint(){
+    public function imprint()
+    {
         return [];
     }
 }

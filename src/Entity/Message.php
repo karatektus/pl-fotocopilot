@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Components\Model\MessageModel;
 use App\Components\Traits\EditableEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Message
+class Message extends MessageModel
 {
     use EditableEntityTrait;
     /**

@@ -1,0 +1,7 @@
+pr_recaptcha:
+  public_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+  secret_key: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+  enabled: true # optional / default value: true - you can disable it for local or test env
+  score_threshhold: 0.1 # optional / default value: 0.5
+  hide_badge: false # optional / default value: false *
+  host: 'www.google.com' # optional / default value: www.google.com **
