@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Message;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use PR\Bundle\RecaptchaBundle\Form\Type\RecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -19,46 +21,49 @@ class MessageFormType extends AbstractType
     {
         $builder
             ->add('sender', TextType::class, [
-                'label' => false,
-                'attr' => [
+                'label'       => false,
+                'attr'        => [
                     'placeholder' => 'name',
                 ],
-                'required' => true,
+                'required'    => true,
                 'constraints' => new NotBlank(),
             ])
-            ->add('senderEmail',EmailType::class, [
-                'label' => false,
-                'attr' => [
+            ->add('senderEmail', EmailType::class, [
+                'label'       => false,
+                'attr'        => [
                     'placeholder' => 'email',
                 ],
-                'required' => true,
+                'required'    => true,
                 'constraints' => new NotBlank(),
             ])
             ->add('subject', TextType::class, [
-                'label' => false,
-                'attr' => [
+                'label'       => false,
+                'attr'        => [
                     'placeholder' => 'subject',
                 ],
-                'required' => true,
+                'required'    => true,
                 'constraints' => new NotBlank(),
             ])
-            ->add('message',TextareaType::class, [
-                'label' => false,
-                'attr' => [
+            ->add('message', TextareaType::class, [
+                'label'       => false,
+                'attr'        => [
                     'placeholder' => 'message',
-                    'class' => 'h-100',
+                    'class'       => 'h-100',
                 ],
-                'required' => true,
+                'required'    => true,
                 'constraints' => new NotBlank(),
             ])
-            ->add('captcha', RecaptchaType::class)
+            ->add('captcha', Recaptcha3Type::class, [
+                'action_name' => 'contact_form',
+                'constraints' => new Recaptcha3(['message' => 'There were problems with your captcha. Please try again or contact with support and provide following code(s): {{ errorCodes }}']),
+                //'script_nonce_csp' => $nonceCSP,
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'submit',
-                'attr' => [
+                'attr'  => [
                     'class' => 'w-100 w-md-auto btn-primary',
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

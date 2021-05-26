@@ -9,6 +9,7 @@ use App\Services\MessageService;
 use DateTime;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Exception;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
 use ReCaptcha\ReCaptcha;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,7 +37,7 @@ class DefaultController extends AbstractController
      *
      * @throws Exception
      */
-    public function index(Request $request, MessageService $messageService, MailService $mailService, ManagerRegistry $doctrine, RouterInterface $router, FormFactoryInterface $formFactory)
+    public function index(Request $request, MessageService $messageService, MailService $mailService, ManagerRegistry $doctrine, RouterInterface $router, FormFactoryInterface $formFactory, Recaptcha3Validator $recaptcha3Validator)
     {
         $message = new Message();
 
@@ -45,7 +46,13 @@ class DefaultController extends AbstractController
 
         if (true === $form->isSubmitted() && true === $form->isValid()) {
 
-            $mailSuccess = true; // $mailService->send($message->getSender(), $message->getSenderEmail(), $message->getSubject(), $message->getMessage());
+            $score = $recaptcha3Validator->getLastResponse()->getScore();
+            if(0.5 > floatval($score)){
+                $messageService->error('bot_error');
+                return new RedirectResponse($router->generate('app_default_index'));
+            }
+
+            $mailSuccess = $mailService->send($message->getSender(), $message->getSenderEmail(), $message->getSubject(), $message->getMessage());
             if (true === $mailSuccess) {
                 $messageService->success('mail_success');
                 $message->setSentAt(new DateTime());
